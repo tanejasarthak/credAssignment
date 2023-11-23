@@ -35,36 +35,42 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        viewModel = MainControllerViewModel(dataSource: [.amountSelection, .emiSelection, .bankSelection])
+        viewModel = MainControllerViewModel(dataSource: [.amountSelection, .emiSelection])
         
         // MARK: - Add UIViews
         addBottomCTAView()
             //addAmountSelectionCircularProgressBar()
     }
     
-    private func addAmountSelectionCircularProgressBar() {
-        if let amountSelectionView = Bundle.main.loadNibNamed("AmountSelectionCircularProgressBarView", owner:
-                                                                self, options: nil)?.first as? AmountSelectionCircularProgressBarView {
-            amountSelectionView.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview(amountSelectionView)
-            
-            amountSelectionView.configureView(vm: AmountSelectionCircularProgressBarViewModel(dataModel: AmountSelectionCircularProgressBarModel(selectedAmount: 1000, interestRate: 20)))
-        
-            amountSelectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-            amountSelectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-            amountSelectionView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        }
-    }
+//    private func addAmountSelectionCircularProgressBar() {
+//        if let amountSelectionView = Bundle.main.loadNibNamed("AmountSelectionCircularProgressBarView", owner:
+//                                                                self, options: nil)?.first as? AmountSelectionCircularProgressBarView {
+//            amountSelectionView.translatesAutoresizingMaskIntoConstraints = false
+//            self.view.addSubview(amountSelectionView)
+//
+//            amountSelectionView.configureView(vm: AmountSelectionCircularProgressBarViewModel(dataModel: AmountSelectionCircularProgressBarModel(selectedAmount: 1000, interestRate: 20, isCurrentlyActiveView: false)))
+//
+//            amountSelectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+//            amountSelectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+//            amountSelectionView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+//        }
+//    }
     
     private func addBottomCTAView() {
         let bottomCTAView = BottomCTAView(viewModel: BottomCTAViewModel(model: BottomCTAModel(ctaTitleString: "Something")))
         bottomCTAView.translatesAutoresizingMaskIntoConstraints = false
+        bottomCTAView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bottomCTATapped)))
         self.bottomContainerView.addSubview(bottomCTAView)
         
         bottomCTAView.leadingAnchor.constraint(equalTo: self.bottomContainerView.leadingAnchor).isActive = true
         bottomCTAView.trailingAnchor.constraint(equalTo: self.bottomContainerView.trailingAnchor).isActive = true
         bottomCTAView.bottomAnchor.constraint(equalTo: bottomContainerView.bottomAnchor).isActive = true
         bottomCTAView.topAnchor.constraint(equalTo: bottomContainerView.topAnchor).isActive = true
+    }
+    
+    @objc func bottomCTATapped() {
+        viewModel.bottomCTATapped(on: viewModel.getCurrentlySelectedView())
+        tblView.reloadData()
     }
 }
 

@@ -12,6 +12,7 @@ class SendMoneyToBankTableViewCellTableViewCell: UITableViewCell {
     // MARK: - Model
     struct Model: GeneralTableViewModelProtocol {
         var tblViewModel: [BankDetailsTableViewCell.Model]
+        var isCurrentlyActiveView: Bool
     }
     
     // MARK: - IBOutlets
@@ -20,6 +21,7 @@ class SendMoneyToBankTableViewCellTableViewCell: UITableViewCell {
             tblView.register(UINib(nibName: "BankDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "BankDetailsTableViewCell")
         }
     }
+    @IBOutlet weak var parentView: UIView!
     
     // MARK: - Properties
     private var tblViewModel: [BankDetailsTableViewCell.Model]?
@@ -37,6 +39,7 @@ class SendMoneyToBankTableViewCellTableViewCell: UITableViewCell {
     
     func configureView(with bankDetailsModel: SendMoneyToBankTableViewCellTableViewCell.Model) {
         self.tblViewModel = bankDetailsModel.tblViewModel
+        parentView.isHidden = !bankDetailsModel.isCurrentlyActiveView
     }
 }
 

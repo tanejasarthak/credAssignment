@@ -33,4 +33,8 @@ class AmountSelectionCircularProgressBarViewModel {
     func getMinAndMaxPossibleAmountValue() -> (min: Int, max: Int) {
         (dataModel.minPossibleAmount, dataModel.maxPossibleAmount)
     }
+    
+    func isViewCurrentlySelected() -> Bool {
+        dataModel.isCurrentlyActiveView
+    }
 }

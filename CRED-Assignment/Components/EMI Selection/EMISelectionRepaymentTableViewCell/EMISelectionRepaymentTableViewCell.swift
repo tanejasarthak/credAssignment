@@ -14,6 +14,7 @@ class EMISelectionRepaymentTableViewCell: UITableViewCell {
     // MARK: - Model
     struct Model: GeneralTableViewModelProtocol {
         var emiSelectionCollectionViewCellsArr: [EMISelectionCollectionViewCell.Model]
+        var isCurrentlyActiveView: Bool
     }
     
     // MARK: - IBOutlets
@@ -29,6 +30,7 @@ class EMISelectionRepaymentTableViewCell: UITableViewCell {
             createYourPlanCTA.makeRoundedView()
         }
     }
+    @IBOutlet weak var parentView: UIView!
     
     // MARK: - Properties
     private var collectionViewModels: EMISelectionRepaymentTableViewCell.Model?
@@ -46,6 +48,7 @@ class EMISelectionRepaymentTableViewCell: UITableViewCell {
     
     func configureView(with model: EMISelectionRepaymentTableViewCell.Model) {
         self.collectionViewModels = model
+        parentView.isHidden = !model.isCurrentlyActiveView
     }
     
     @IBAction func createYourPlanCTATapped() {

@@ -16,6 +16,7 @@ class MainControllerViewModel {
     
     // MARK: - Properties
     private var dataSource: [RowsType]
+    private var currentSelectedRow: RowsType = .amountSelection
     
     // MARK: - Initialiser
     init(dataSource: [RowsType]) {
@@ -40,7 +41,7 @@ class MainControllerViewModel {
     }
     
     private func getAmountSelectionModel() -> AmountSelectionCircularProgressBarModel {
-        AmountSelectionCircularProgressBarModel(selectedAmount: 1000, interestRate: 10, minPossibleAmount: 500, maxPossibleAmount: 100000)
+        AmountSelectionCircularProgressBarModel(selectedAmount: 1000, interestRate: 10, minPossibleAmount: 500, maxPossibleAmount: 100000, isCurrentlyActiveView: currentSelectedRow == .amountSelection)
     }
     
     private func getEMISelectionModel() -> EMISelectionRepaymentTableViewCell.Model {
@@ -50,7 +51,7 @@ class MainControllerViewModel {
             EMISelectionCollectionViewCell.Model(backgroundColor: UIColor.red, isSelected: false, emiAmount: 50000, emiDuration: 8, isRecommended: true)
         ]
         
-        return EMISelectionRepaymentTableViewCell.Model(emiSelectionCollectionViewCellsArr: subModelsArr)
+        return EMISelectionRepaymentTableViewCell.Model(emiSelectionCollectionViewCellsArr: subModelsArr, isCurrentlyActiveView: currentSelectedRow == .emiSelection)
     }
     
     private func getBankSelectionModel() -> SendMoneyToBankTableViewCellTableViewCell.Model {
@@ -59,6 +60,20 @@ class MainControllerViewModel {
             BankDetailsTableViewCell.Model(bankId: 2, bankLogoImage: UIImage(systemName: "chevron.left"), bankName: "ICICI", bankAccountNumber: 21000, isSelected: true)
         ]
         
-        return SendMoneyToBankTableViewCellTableViewCell.Model(tblViewModel: tblViewModelsArr)
+        return SendMoneyToBankTableViewCellTableViewCell.Model(tblViewModel: tblViewModelsArr, isCurrentlyActiveView: currentSelectedRow == .bankSelection)
+    }
+    
+    func bottomCTATapped(on viewType: RowsType) {
+        if viewType == .amountSelection {
+            currentSelectedRow = .emiSelection
+        } else if viewType == .emiSelection {
+            currentSelectedRow = .bankSelection
+        } else if viewType == .bankSelection {
+            currentSelectedRow = .amountSelection
+        }
+    }
+    
+    func getCurrentlySelectedView() -> RowsType {
+        currentSelectedRow
     }
 }

@@ -14,6 +14,7 @@ class AmountSelectionCircularProgressBarTableViewCell: UITableViewCell {
     @IBOutlet weak var circularSlider: CircularSlider!
     @IBOutlet weak var lblAmountSelected: UILabel!
     @IBOutlet weak var lblInterestRateMonthly: UILabel!
+    @IBOutlet weak var parentView: UIView!
     
     // MARK: - Properties
    private var viewModel: AmountSelectionCircularProgressBarViewModel?
@@ -24,6 +25,7 @@ class AmountSelectionCircularProgressBarTableViewCell: UITableViewCell {
         self.viewModel = vm
         viewModel?.delegate = self
         setUpCircularView()
+        parentView.isHidden = !((vm?.isViewCurrentlySelected()).unwrappedValue(or: false))
     }
     
     func setUpCircularView() {
