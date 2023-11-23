@@ -55,9 +55,9 @@ class MainControllerViewModel {
         }
         
         let subModelsArr: [EMISelectionCollectionViewCell.Model] = [
-            EMISelectionCollectionViewCell.Model(backgroundColor: UIColor.blue, isSelected: false, emiAmount: 10000, emiDuration: 4, isRecommended: false),
-            EMISelectionCollectionViewCell.Model(backgroundColor: UIColor.green, isSelected: true, emiAmount: 25000, emiDuration: 6, isRecommended: false),
-            EMISelectionCollectionViewCell.Model(backgroundColor: UIColor.red, isSelected: false, emiAmount: 50000, emiDuration: 8, isRecommended: true)
+            EMISelectionCollectionViewCell.Model(backgroundColor: UIColor(red: 71/255, green: 51/255, blue: 63/255, alpha: 1.0), isSelected: false, emiAmount: 10000, emiDuration: 4, isRecommended: false),
+            EMISelectionCollectionViewCell.Model(backgroundColor: UIColor(red: 126/255, green: 115/255, blue: 146/255, alpha: 1.0), isSelected: true, emiAmount: 25000, emiDuration: 6, isRecommended: false),
+            EMISelectionCollectionViewCell.Model(backgroundColor: UIColor(red: 85/255, green: 106/255, blue: 142/255, alpha: 1.0), isSelected: false, emiAmount: 50000, emiDuration: 8, isRecommended: true)
         ]
         
         return EMISelectionRepaymentTableViewCell.Model(emiSelectionCollectionViewCellsArr: subModelsArr, isCurrentlyActiveView: currentSelectedRow == .emiSelection)
@@ -65,8 +65,8 @@ class MainControllerViewModel {
     
     private func getBankSelectionModel() -> GeneralTableViewModelProtocol {
         let tblViewModelsArr: [BankDetailsTableViewCell.Model] = [
-            BankDetailsTableViewCell.Model(bankId: 1, bankLogoImage: UIImage(named: "hdfcLogo"), bankName: "HDFC", bankAccountNumber: 102010, isSelected: false),
-            BankDetailsTableViewCell.Model(bankId: 2, bankLogoImage: UIImage(named: "iciciLogo"), bankName: "ICICI", bankAccountNumber: 21000, isSelected: true)
+            BankDetailsTableViewCell.Model(bankId: 1, bankLogoImage: UIImage(named: "hdfcLogo"), bankName: "HDFC", bankAccountNumber: 102010332323, isSelected: false),
+            BankDetailsTableViewCell.Model(bankId: 2, bankLogoImage: UIImage(named: "iciciLogo"), bankName: "ICICI", bankAccountNumber: 21000232332, isSelected: true)
         ]
         
         return SendMoneyToBankTableViewCellTableViewCell.Model(tblViewModel: tblViewModelsArr, isCurrentlyActiveView: currentSelectedRow == .bankSelection)

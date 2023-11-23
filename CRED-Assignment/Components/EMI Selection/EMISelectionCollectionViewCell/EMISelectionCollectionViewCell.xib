@@ -83,26 +83,26 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="8"/>
+                                <integer key="value" value="16"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Gv-DH-1D7" userLabel="RecommendedView">
-                        <rect key="frame" x="34.666666666666664" y="-0.66666666666666607" width="114.66666666666669" height="25.333333333333329"/>
+                        <rect key="frame" x="30.666666666666664" y="-0.66666666666666607" width="122.66666666666669" height="25.333333333333329"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recommended" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p27-7L-Ro2">
-                                <rect key="frame" x="2" y="2.3333333333333339" width="110.66666666666667" height="21"/>
+                                <rect key="frame" x="5.9999999999999929" y="2.3333333333333339" width="110.66666666666666" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.53725490196078429" green="0.53333333333333333" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="p27-7L-Ro2" firstAttribute="top" secondItem="3Gv-DH-1D7" secondAttribute="top" constant="2" id="4pI-ns-dnl"/>
-                            <constraint firstAttribute="trailing" secondItem="p27-7L-Ro2" secondAttribute="trailing" constant="2" id="8hj-pt-QBz"/>
+                            <constraint firstAttribute="trailing" secondItem="p27-7L-Ro2" secondAttribute="trailing" constant="6" id="8hj-pt-QBz"/>
                             <constraint firstAttribute="bottom" secondItem="p27-7L-Ro2" secondAttribute="bottom" constant="2" id="lxW-NS-G8k"/>
-                            <constraint firstItem="p27-7L-Ro2" firstAttribute="leading" secondItem="3Gv-DH-1D7" secondAttribute="leading" constant="2" id="yue-sc-dXM"/>
+                            <constraint firstItem="p27-7L-Ro2" firstAttribute="leading" secondItem="3Gv-DH-1D7" secondAttribute="leading" constant="6" id="yue-sc-dXM"/>
                         </constraints>
                     </view>
                 </subviews>

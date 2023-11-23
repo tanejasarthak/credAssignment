@@ -22,7 +22,12 @@ class CollpasedTableViewCell: UITableViewCell {
     }
     
     // MARK: - IBOutlets
-    @IBOutlet weak var parentView: UIView!
+    @IBOutlet weak var parentView: UIView! {
+        didSet {
+            parentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            parentView.layer.cornerRadius = 32.0
+        }
+    }
     @IBOutlet weak var headingFirst: UILabel!
     @IBOutlet weak var subHeadingFirst: UILabel!
     @IBOutlet weak var headingSecond: UILabel!

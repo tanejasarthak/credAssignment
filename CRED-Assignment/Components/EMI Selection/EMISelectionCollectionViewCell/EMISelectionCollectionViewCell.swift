@@ -41,8 +41,8 @@ class EMISelectionCollectionViewCell: UICollectionViewCell {
 
     func configureView(with model: EMISelectionCollectionViewCell.Model) {
         parentView.backgroundColor = model.backgroundColor
-        lblEMIAmount.text = String(model.emiAmount)
-        lblEMIDuration.text = String(model.emiDuration)
+        lblEMIAmount.text = UtilityFunctions.toCommaSeperatedAmount(value: Int(model.emiAmount), addRupeeSymbol: true) + " / mo"
+        lblEMIDuration.text = "for " + String(model.emiDuration) + " months"
         recommendedView.isHidden = model.isRecommended
     }
 }

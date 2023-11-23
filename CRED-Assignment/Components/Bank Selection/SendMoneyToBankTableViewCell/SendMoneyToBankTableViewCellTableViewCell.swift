@@ -24,7 +24,7 @@ class SendMoneyToBankTableViewCellTableViewCell: UITableViewCell {
     @IBOutlet weak var parentView: UIView! {
         didSet {
             parentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            parentView.layer.cornerRadius = 8.0
+            parentView.layer.cornerRadius = 32.0
         }
     }
     @IBOutlet weak var changeAccountView: UIView! {

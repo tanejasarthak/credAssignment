@@ -41,22 +41,11 @@ class ViewController: UIViewController {
         
         // MARK: - Add UIViews
         addBottomCTAView()
-            //addAmountSelectionCircularProgressBar()
     }
     
-//    private func addAmountSelectionCircularProgressBar() {
-//        if let amountSelectionView = Bundle.main.loadNibNamed("AmountSelectionCircularProgressBarView", owner:
-//                                                                self, options: nil)?.first as? AmountSelectionCircularProgressBarView {
-//            amountSelectionView.translatesAutoresizingMaskIntoConstraints = false
-//            self.view.addSubview(amountSelectionView)
-//
-//            amountSelectionView.configureView(vm: AmountSelectionCircularProgressBarViewModel(dataModel: AmountSelectionCircularProgressBarModel(selectedAmount: 1000, interestRate: 20, isCurrentlyActiveView: false)))
-//
-//            amountSelectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-//            amountSelectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-//            amountSelectionView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-//        }
-//    }
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     private func addBottomCTAView() {
         let bottomCTAView = BottomCTAView(viewModel: BottomCTAViewModel(model: BottomCTAModel(ctaTitleString: "Something")))

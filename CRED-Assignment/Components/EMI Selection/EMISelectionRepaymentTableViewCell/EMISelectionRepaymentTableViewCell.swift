@@ -33,7 +33,14 @@ class EMISelectionRepaymentTableViewCell: UITableViewCell {
     @IBOutlet weak var parentView: UIView! {
         didSet {
             parentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            parentView.layer.cornerRadius = 8.0
+            parentView.layer.cornerRadius = 32.0
+        }
+    }
+    @IBOutlet weak var createYourPlanView: UIView! {
+        didSet {
+            createYourPlanView.makeRoundedView()
+            createYourPlanView.layer.borderWidth = 1.0
+            createYourPlanView.layer.borderColor = UIColor(red: 180, green: 190, blue: 210, alpha: 1.0).cgColor
         }
     }
     
