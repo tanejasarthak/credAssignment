@@ -27,6 +27,13 @@ class SendMoneyToBankTableViewCellTableViewCell: UITableViewCell {
             parentView.layer.cornerRadius = 8.0
         }
     }
+    @IBOutlet weak var changeAccountView: UIView! {
+        didSet {
+            changeAccountView.makeRoundedView()
+            changeAccountView.layer.borderWidth = 1.0
+            changeAccountView.layer.borderColor = UIColor(red: 180, green: 190, blue: 210, alpha: 1.0).cgColor
+        }
+    }
     
     // MARK: - Properties
     private var tblViewModel: [BankDetailsTableViewCell.Model]?

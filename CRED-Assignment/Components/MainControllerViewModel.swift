@@ -65,13 +65,14 @@ class MainControllerViewModel {
     
     private func getBankSelectionModel() -> GeneralTableViewModelProtocol {
         let tblViewModelsArr: [BankDetailsTableViewCell.Model] = [
-            BankDetailsTableViewCell.Model(bankId: 1, bankLogoImage: UIImage(systemName: "chevron.right"), bankName: "HDFC", bankAccountNumber: 102010, isSelected: false),
-            BankDetailsTableViewCell.Model(bankId: 2, bankLogoImage: UIImage(systemName: "chevron.left"), bankName: "ICICI", bankAccountNumber: 21000, isSelected: true)
+            BankDetailsTableViewCell.Model(bankId: 1, bankLogoImage: UIImage(named: "hdfcLogo"), bankName: "HDFC", bankAccountNumber: 102010, isSelected: false),
+            BankDetailsTableViewCell.Model(bankId: 2, bankLogoImage: UIImage(named: "iciciLogo"), bankName: "ICICI", bankAccountNumber: 21000, isSelected: true)
         ]
         
         return SendMoneyToBankTableViewCellTableViewCell.Model(tblViewModel: tblViewModelsArr, isCurrentlyActiveView: currentSelectedRow == .bankSelection)
     }
     
+    @discardableResult
     func bottomCTATapped(on viewType: RowsType) -> Bool {
         if viewType == .amountSelection {
             currentSelectedRow = .emiSelection

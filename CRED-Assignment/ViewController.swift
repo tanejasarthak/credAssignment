@@ -71,23 +71,29 @@ class ViewController: UIViewController {
     }
     
     @objc func bottomCTATapped() {
-    
-//        let isViewUpdated = viewModel.bottomCTATapped(on: viewModel.getCurrentlySelectedView())
-//        if !isViewUpdated { return }
-        //viewModel.modifyDataSource()
+        let previouslyCurrentlySelectedView = viewModel.getCurrentlySelectedView()
+        if previouslyCurrentlySelectedView == .bankSelection {
+            return
+        }
+        
+        viewModel.bottomCTATapped(on: viewModel.getCurrentlySelectedView())
+        let afterCurrentlySelectedView = viewModel.getCurrentlySelectedView()
         
         tblView.beginUpdates()
-//        tblView.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .top)
-//        tblView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .bottom)
-//        print("deleting at \(viewModel.getCurrentlySelectedRowIndex())")
-     //   tblView.deleteRows(at: [IndexPath(row: viewModel.getCurrentlySelectedRowIndex(), section: 0)], with: .top)
-    //    tblView.deleteSections(IndexSet(integer: 0), with: .top)
-        viewModel.bottomCTATapped(on: viewModel.getCurrentlySelectedView())
-        //tblView.insertSections(IndexSet(integer: 0), with: .bottom)
-//        print("adding at \(viewModel.getCurrentlySelectedRowIndex())")
-     //   tblView.insertRows(at: [IndexPath(row: viewModel.getCurrentlySelectedRowIndex(), section: 0)], with: .bottom)
+        if afterCurrentlySelectedView == .emiSelection {
+            tblView.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .top)
+            tblView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .bottom)
+            
+            tblView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
+            tblView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
+        } else if afterCurrentlySelectedView == .bankSelection {
+            tblView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .top)
+            tblView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
+            
+            tblView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .top)
+            tblView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .bottom)
+        }
         tblView.endUpdates()
-        tblView.reloadData()
     }
 }
 
@@ -131,6 +137,31 @@ extension ViewController: CollpasedTableViewCellProtocol {
     func collapsedTableViewCellTapped(at tag: Int) {
         print(tag)
         viewModel.expandView(at: tag)
-        tblView.reloadData()
+       // tblView.reloadData()
+        
+        if tag == 0 {
+            // delete 1 and 2
+            tblView.beginUpdates()
+            
+            tblView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .bottom)
+            tblView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .bottom)
+            
+            tblView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
+            tblView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
+            
+            tblView.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .bottom)
+            tblView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
+            
+            tblView.endUpdates()
+        } else if tag == 1 {
+            // delete 2 // 0 should still be collapsed
+            tblView.beginUpdates()
+            tblView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .bottom)
+            tblView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .bottom)
+            
+            tblView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
+            tblView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .top)
+            tblView.endUpdates()
+        }
     }
 }
