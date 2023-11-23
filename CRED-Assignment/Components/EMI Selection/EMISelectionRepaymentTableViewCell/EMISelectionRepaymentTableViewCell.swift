@@ -30,7 +30,12 @@ class EMISelectionRepaymentTableViewCell: UITableViewCell {
             createYourPlanCTA.makeRoundedView()
         }
     }
-    @IBOutlet weak var parentView: UIView!
+    @IBOutlet weak var parentView: UIView! {
+        didSet {
+            parentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            parentView.layer.cornerRadius = 8.0
+        }
+    }
     
     // MARK: - Properties
     private var collectionViewModels: EMISelectionRepaymentTableViewCell.Model?
@@ -49,6 +54,7 @@ class EMISelectionRepaymentTableViewCell: UITableViewCell {
     func configureView(with model: EMISelectionRepaymentTableViewCell.Model) {
         self.collectionViewModels = model
         parentView.isHidden = !model.isCurrentlyActiveView
+        self.isHidden = !model.isCurrentlyActiveView
     }
     
     @IBAction func createYourPlanCTATapped() {

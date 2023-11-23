@@ -21,7 +21,12 @@ class SendMoneyToBankTableViewCellTableViewCell: UITableViewCell {
             tblView.register(UINib(nibName: "BankDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "BankDetailsTableViewCell")
         }
     }
-    @IBOutlet weak var parentView: UIView!
+    @IBOutlet weak var parentView: UIView! {
+        didSet {
+            parentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            parentView.layer.cornerRadius = 8.0
+        }
+    }
     
     // MARK: - Properties
     private var tblViewModel: [BankDetailsTableViewCell.Model]?
@@ -40,6 +45,7 @@ class SendMoneyToBankTableViewCellTableViewCell: UITableViewCell {
     func configureView(with bankDetailsModel: SendMoneyToBankTableViewCellTableViewCell.Model) {
         self.tblViewModel = bankDetailsModel.tblViewModel
         parentView.isHidden = !bankDetailsModel.isCurrentlyActiveView
+        self.isHidden = !bankDetailsModel.isCurrentlyActiveView
     }
 }
 

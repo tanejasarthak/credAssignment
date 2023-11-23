@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KxO-4A-p7u">
-                        <rect key="frame" x="12" y="12" width="172" height="174"/>
+                        <rect key="frame" x="6" y="12" width="172" height="174"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UIv-qs-SGa">
                                 <rect key="frame" x="10" y="10" width="30" height="30"/>
@@ -88,7 +88,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Gv-DH-1D7" userLabel="RecommendedView">
-                        <rect key="frame" x="40.666666666666664" y="-0.66666666666666607" width="114.66666666666669" height="25.333333333333329"/>
+                        <rect key="frame" x="34.666666666666664" y="-0.66666666666666607" width="114.66666666666669" height="25.333333333333329"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recommended" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p27-7L-Ro2">
                                 <rect key="frame" x="2" y="2.3333333333333339" width="110.66666666666667" height="21"/>
@@ -111,8 +111,8 @@
             <constraints>
                 <constraint firstItem="3Gv-DH-1D7" firstAttribute="centerX" secondItem="KxO-4A-p7u" secondAttribute="centerX" id="0AR-np-TdI"/>
                 <constraint firstItem="KxO-4A-p7u" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="7tw-6m-QTo"/>
-                <constraint firstItem="KxO-4A-p7u" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="ALZ-OP-MFq"/>
-                <constraint firstAttribute="trailing" secondItem="KxO-4A-p7u" secondAttribute="trailing" constant="12" id="Aaq-hh-fg4"/>
+                <constraint firstItem="KxO-4A-p7u" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="ALZ-OP-MFq"/>
+                <constraint firstAttribute="trailing" secondItem="KxO-4A-p7u" secondAttribute="trailing" constant="6" id="Aaq-hh-fg4"/>
                 <constraint firstItem="3Gv-DH-1D7" firstAttribute="centerY" secondItem="KxO-4A-p7u" secondAttribute="top" id="G4O-j5-ciZ"/>
                 <constraint firstAttribute="bottom" secondItem="KxO-4A-p7u" secondAttribute="bottom" constant="12" id="qOi-89-3Lo"/>
             </constraints>

@@ -8,12 +8,12 @@
 import UIKit
 
 protocol CollpasedTableViewCellProtocol: AnyObject {
-    func collapsedTableViewCellTapped()
+    func collapsedTableViewCellTapped(at tag: Int)
 }
 
 class CollpasedTableViewCell: UITableViewCell {
     // MARK: - Model
-    struct Model {
+    struct Model: GeneralTableViewModelProtocol {
         var firstHeading: String?
         var firstSubHeading: String?
         var secondHeading: String?
@@ -53,6 +53,6 @@ class CollpasedTableViewCell: UITableViewCell {
     }
     
     @objc func viewTapped() {
-        delegate?.collapsedTableViewCellTapped()
+        delegate?.collapsedTableViewCellTapped(at: self.tag)
     }
 }

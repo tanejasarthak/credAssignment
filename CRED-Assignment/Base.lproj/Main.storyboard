@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Km6-gI-3u2">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Km6-gI-3u2" customClass="ContentSizedTableView" customModule="CRED_Assignment" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="768"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -36,7 +36,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Km6-gI-3u2" secondAttribute="trailing" id="Zeq-Xl-jPO"/>
                             <constraint firstItem="Qv8-Cp-UhQ" firstAttribute="top" secondItem="Km6-gI-3u2" secondAttribute="bottom" id="cBN-6e-LJ0"/>
                             <constraint firstItem="Km6-gI-3u2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hcM-3E-X52"/>
-                            <constraint firstItem="Km6-gI-3u2" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="uGZ-Cv-KnD"/>
+                            <constraint firstItem="Km6-gI-3u2" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="top" id="uGZ-Cv-KnD"/>
                         </constraints>
                     </view>
                     <connections>

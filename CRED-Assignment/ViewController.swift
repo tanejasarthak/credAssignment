@@ -22,9 +22,11 @@ class ViewController: UIViewController {
         didSet {
             tblView.delegate = self
             tblView.dataSource = self
+            tblView.bounces = false
             tblView.register(UINib(nibName: "AmountSelectionCircularProgressBarTableViewCell", bundle: nil), forCellReuseIdentifier: "AmountSelectionCircularProgressBarTableViewCell")
             tblView.register(UINib(nibName: "EMISelectionRepaymentTableViewCell", bundle: nil), forCellReuseIdentifier: "EMISelectionRepaymentTableViewCell")
             tblView.register(UINib(nibName: "SendMoneyToBankTableViewCellTableViewCell", bundle: nil), forCellReuseIdentifier: "SendMoneyToBankTableViewCellTableViewCell")
+            tblView.register(UINib(nibName: "CollpasedTableViewCell", bundle: nil), forCellReuseIdentifier: "CollpasedTableViewCell")
         }
     }
     @IBOutlet weak var bottomContainerView: UIView!
@@ -35,7 +37,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        viewModel = MainControllerViewModel(dataSource: [.amountSelection, .emiSelection])
+        viewModel = MainControllerViewModel(dataSource: [.amountSelection, .emiSelection, .bankSelection])
         
         // MARK: - Add UIViews
         addBottomCTAView()
@@ -69,7 +71,22 @@ class ViewController: UIViewController {
     }
     
     @objc func bottomCTATapped() {
+    
+//        let isViewUpdated = viewModel.bottomCTATapped(on: viewModel.getCurrentlySelectedView())
+//        if !isViewUpdated { return }
+        //viewModel.modifyDataSource()
+        
+        tblView.beginUpdates()
+//        tblView.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .top)
+//        tblView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .bottom)
+//        print("deleting at \(viewModel.getCurrentlySelectedRowIndex())")
+     //   tblView.deleteRows(at: [IndexPath(row: viewModel.getCurrentlySelectedRowIndex(), section: 0)], with: .top)
+    //    tblView.deleteSections(IndexSet(integer: 0), with: .top)
         viewModel.bottomCTATapped(on: viewModel.getCurrentlySelectedView())
+        //tblView.insertSections(IndexSet(integer: 0), with: .bottom)
+//        print("adding at \(viewModel.getCurrentlySelectedRowIndex())")
+     //   tblView.insertRows(at: [IndexPath(row: viewModel.getCurrentlySelectedRowIndex(), section: 0)], with: .bottom)
+        tblView.endUpdates()
         tblView.reloadData()
     }
 }
@@ -94,9 +111,26 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 let bankSelectionTblViewCell: SendMoneyToBankTableViewCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SendMoneyToBankTableViewCellTableViewCell") as! SendMoneyToBankTableViewCellTableViewCell
                 bankSelectionTblViewCell.configureView(with: bankSelectionData)
                 return bankSelectionTblViewCell
+            } else if let collapsedTableViewCellData = tableViewRowData as? CollpasedTableViewCell.Model {
+                let collapsedTableViewCell: CollpasedTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CollpasedTableViewCell") as! CollpasedTableViewCell
+                collapsedTableViewCell.tag = indexPath.row
+                collapsedTableViewCell.delegate = self
+                collapsedTableViewCell.configureView(with: collapsedTableViewCellData)
+                return collapsedTableViewCell
             }
         }
         
         return UITableViewCell()
+    }
+}
+
+
+
+// MARK: - Collapsed TableView Delegate
+extension ViewController: CollpasedTableViewCellProtocol {
+    func collapsedTableViewCellTapped(at tag: Int) {
+        print(tag)
+        viewModel.expandView(at: tag)
+        tblView.reloadData()
     }
 }
