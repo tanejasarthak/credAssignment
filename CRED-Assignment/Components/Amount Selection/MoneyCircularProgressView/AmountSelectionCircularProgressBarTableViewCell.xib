@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="442" id="KGk-i7-Jjw" customClass="AmountSelectionCircularProgressBarTableViewCell" customModule="CRED_Assignment" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="325" height="442"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="325" height="442"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiI-wW-FOL">
+                        <rect key="frame" x="0.0" y="0.0" width="325" height="442"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="sarthak, how much do you need?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daW-1c-b3h">
+                                <rect key="frame" x="20" y="9.9999999999999982" width="251" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.55294117649999996" green="0.61960784310000006" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="move the dial and set any amount upto " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brF-RZ-JY4">
+                                <rect key="frame" x="20" y="40.333333333333329" width="197.66666666666666" height="20.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.2901960784" green="0.31764705879999999" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-Eq-35I">
+                                <rect key="frame" x="5.6666666666666572" y="70.666666666666657" width="314" height="338.66666666666674"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcZ-zc-Jps" customClass="CircularSlider" customModule="HGCircularSlider">
+                                        <rect key="frame" x="32" y="16" width="250" height="250"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="credit amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNe-PU-zin">
+                                                <rect key="frame" x="72" y="81.333333333333343" width="106" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rJ-d8-9jE">
+                                                <rect key="frame" x="95.333333333333343" y="114.33333333333334" width="59" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfp-i1-Ypm">
+                                                <rect key="frame" x="95.333333333333343" y="135.33333333333334" width="59" height="0.66666666666665719"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="jMN-P7-ORp"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@1.04% annually" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dK9-ed-35r">
+                                                <rect key="frame" x="60.333333333333329" y="147.33333333333331" width="129.33333333333337" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="vfp-i1-Ypm" firstAttribute="top" secondItem="7rJ-d8-9jE" secondAttribute="bottom" id="1Gg-gn-sf5"/>
+                                            <constraint firstItem="jNe-PU-zin" firstAttribute="centerX" secondItem="kcZ-zc-Jps" secondAttribute="centerX" id="1dx-r6-y9l"/>
+                                            <constraint firstItem="7rJ-d8-9jE" firstAttribute="top" secondItem="jNe-PU-zin" secondAttribute="bottom" constant="12" id="9NG-A7-Lec"/>
+                                            <constraint firstAttribute="width" constant="250" id="Cfj-QL-WOf"/>
+                                            <constraint firstItem="7rJ-d8-9jE" firstAttribute="centerX" secondItem="kcZ-zc-Jps" secondAttribute="centerX" id="HsW-7r-u69"/>
+                                            <constraint firstItem="dK9-ed-35r" firstAttribute="centerX" secondItem="kcZ-zc-Jps" secondAttribute="centerX" id="WwH-KD-hGm"/>
+                                            <constraint firstItem="7rJ-d8-9jE" firstAttribute="centerY" secondItem="kcZ-zc-Jps" secondAttribute="centerY" id="ZJY-GK-mhP"/>
+                                            <constraint firstItem="vfp-i1-Ypm" firstAttribute="leading" secondItem="7rJ-d8-9jE" secondAttribute="leading" id="cSv-2G-Vnn"/>
+                                            <constraint firstItem="dK9-ed-35r" firstAttribute="top" secondItem="7rJ-d8-9jE" secondAttribute="bottom" constant="12" id="fGV-Ye-yGS"/>
+                                            <constraint firstItem="vfp-i1-Ypm" firstAttribute="trailing" secondItem="7rJ-d8-9jE" secondAttribute="trailing" id="iXg-f3-KA9"/>
+                                            <constraint firstAttribute="width" secondItem="kcZ-zc-Jps" secondAttribute="height" multiplier="1:1" id="ztO-sH-OeN"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="diskFillColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="diskColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="trackFillColor">
+                                                <color key="value" name="Cred_diskFill"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                                <color key="value" name="Cred_diskEmpty"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endThumbStrokeColor">
+                                                <color key="value" name="Cred_thumb"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endThumbTintColor">
+                                                <color key="value" red="0.2352811098" green="0.18824830649999999" blue="0.19213008879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="backtrackLineWidth">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="numberOfRounds">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="stopThumbAtMinMax" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="stash is instant. money will be credited within seconds" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPn-Lc-VzJ">
+                                        <rect key="frame" x="41.666666666666671" y="282" width="230.66666666666663" height="40.666666666666686"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IPn-Lc-VzJ" secondAttribute="trailing" constant="16" id="BPu-Ti-O4o"/>
+                                    <constraint firstItem="kcZ-zc-Jps" firstAttribute="leading" secondItem="Rcr-Eq-35I" secondAttribute="leading" constant="32" id="N8R-Wl-Vk6"/>
+                                    <constraint firstAttribute="bottom" secondItem="IPn-Lc-VzJ" secondAttribute="bottom" constant="16" id="RZ4-15-3zO"/>
+                                    <constraint firstItem="IPn-Lc-VzJ" firstAttribute="top" secondItem="kcZ-zc-Jps" secondAttribute="bottom" constant="16" id="dR8-TG-EEO"/>
+                                    <constraint firstItem="kcZ-zc-Jps" firstAttribute="top" secondItem="Rcr-Eq-35I" secondAttribute="top" constant="16" id="i9r-Mx-dAV"/>
+                                    <constraint firstItem="IPn-Lc-VzJ" firstAttribute="centerX" secondItem="Rcr-Eq-35I" secondAttribute="centerX" id="rVZ-YI-rG4"/>
+                                    <constraint firstItem="IPn-Lc-VzJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rcr-Eq-35I" secondAttribute="leading" constant="16" id="uuK-G3-YV1"/>
+                                    <constraint firstAttribute="trailing" secondItem="kcZ-zc-Jps" secondAttribute="trailing" constant="32" id="x7E-05-i4L"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.090135060249999996" green="0.098039215690000001" blue="0.132199645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Rcr-Eq-35I" firstAttribute="centerX" secondItem="eiI-wW-FOL" secondAttribute="centerX" id="2hO-xi-ycv"/>
+                            <constraint firstItem="daW-1c-b3h" firstAttribute="top" secondItem="eiI-wW-FOL" secondAttribute="top" constant="10" id="4gU-8E-K96"/>
+                            <constraint firstItem="Rcr-Eq-35I" firstAttribute="top" secondItem="brF-RZ-JY4" secondAttribute="bottom" constant="10" id="F3O-DB-hr7"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="daW-1c-b3h" secondAttribute="trailing" constant="20" id="Pac-kz-nQ3"/>
+                            <constraint firstItem="brF-RZ-JY4" firstAttribute="top" secondItem="daW-1c-b3h" secondAttribute="bottom" constant="10" id="bGA-Kn-XBq"/>
+                            <constraint firstItem="daW-1c-b3h" firstAttribute="leading" secondItem="eiI-wW-FOL" secondAttribute="leading" constant="20" id="diw-qe-1fE"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="brF-RZ-JY4" secondAttribute="trailing" constant="20" id="djz-PA-Vyg"/>
+                            <constraint firstAttribute="bottom" secondItem="Rcr-Eq-35I" secondAttribute="bottom" constant="10.5" id="k8L-yn-NLi"/>
+                            <constraint firstItem="brF-RZ-JY4" firstAttribute="leading" secondItem="eiI-wW-FOL" secondAttribute="leading" constant="20" id="pyL-aj-oMM"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="eiI-wW-FOL" secondAttribute="bottom" id="A71-JG-No6"/>
+                    <constraint firstAttribute="trailing" secondItem="eiI-wW-FOL" secondAttribute="trailing" id="CA9-Ns-8L6"/>
+                    <constraint firstItem="eiI-wW-FOL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FSb-E0-3zz"/>
+                    <constraint firstItem="eiI-wW-FOL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Xac-Aj-6cF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="circularSlider" destination="kcZ-zc-Jps" id="69c-Ng-ud2"/>
+                <outlet property="lblAmountSelected" destination="7rJ-d8-9jE" id="laQ-AG-IKo"/>
+                <outlet property="lblInterestRateMonthly" destination="dK9-ed-35r" id="7UW-Gq-E9L"/>
+            </connections>
+            <point key="canvasLocation" x="95.419847328244273" y="159.85915492957747"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Cred_diskEmpty">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Cred_diskFill">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Cred_thumb">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

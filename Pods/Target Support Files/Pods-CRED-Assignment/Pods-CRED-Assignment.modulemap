@@ -1,0 +1,6 @@
+framework module Pods_CRED_Assignment {
+  umbrella header "Pods-CRED-Assignment-umbrella.h"
+
+  export *
+  module * { export * }
+}
