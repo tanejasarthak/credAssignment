@@ -23,22 +23,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="350" height="354"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="how do you wish to repay?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xom-yC-UC6">
-                                        <rect key="frame" x="20" y="10" width="201.33333333333334" height="35.333333333333336"/>
+                                        <rect key="frame" x="20" y="9.9999999999999982" width="201.33333333333334" height="25.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.56470588235294117" green="0.63137254901960782" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="choose one of our recommended plans or make your own" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ae4-Ia-MMa">
-                                        <rect key="frame" x="20" y="50.333333333333343" width="310" height="40.666666666666657"/>
+                                        <rect key="frame" x="20" y="40.333333333333343" width="310" height="40.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.39215686274509803" green="0.41960784313725491" blue="0.49019607843137253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Q0f-xQ-Isv">
-                                        <rect key="frame" x="0.0" y="101" width="350" height="200"/>
+                                        <rect key="frame" x="0.0" y="91" width="350" height="210"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="ndj-dy-edr"/>
+                                            <constraint firstAttribute="height" constant="210" id="ndj-dy-edr"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="12J-EJ-qbN">
                                             <size key="itemSize" width="128" height="128"/>

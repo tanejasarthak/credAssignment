@@ -33,6 +33,7 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     private var viewModel: MainControllerViewModel!
+    var bottomCTAView: BottomCTAView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class ViewController: UIViewController {
         viewModel = MainControllerViewModel(dataSource: [.amountSelection, .emiSelection, .bankSelection])
         
         // MARK: - Add UIViews
+        bottomCTAView = BottomCTAView(viewModel: BottomCTAViewModel(model: BottomCTAModel(ctaTitleString: viewModel.getPrimaryCTAStringBasedOnViewType())))
         addBottomCTAView()
     }
     
@@ -48,7 +50,6 @@ class ViewController: UIViewController {
     }
     
     private func addBottomCTAView() {
-        let bottomCTAView = BottomCTAView(viewModel: BottomCTAViewModel(model: BottomCTAModel(ctaTitleString: "Something")))
         bottomCTAView.translatesAutoresizingMaskIntoConstraints = false
         bottomCTAView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bottomCTATapped)))
         self.bottomContainerView.addSubview(bottomCTAView)
@@ -83,6 +84,8 @@ class ViewController: UIViewController {
             tblView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .bottom)
         }
         tblView.endUpdates()
+        
+        bottomCTAView.populateDynamicData(with: BottomCTAModel(ctaTitleString: viewModel.getPrimaryCTAStringBasedOnViewType()))
     }
 }
 
@@ -101,6 +104,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             } else if let emiSelectionData = tableViewRowData as? EMISelectionRepaymentTableViewCell.Model {
                 let emiSelectionTblViewCell: EMISelectionRepaymentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "EMISelectionRepaymentTableViewCell") as! EMISelectionRepaymentTableViewCell
                 emiSelectionTblViewCell.configureView(with: emiSelectionData)
+                emiSelectionTblViewCell.delegate = self
                 return emiSelectionTblViewCell
             } else if let bankSelectionData = tableViewRowData as? SendMoneyToBankTableViewCellTableViewCell.Model {
                 let bankSelectionTblViewCell: SendMoneyToBankTableViewCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SendMoneyToBankTableViewCellTableViewCell") as! SendMoneyToBankTableViewCellTableViewCell
@@ -152,5 +156,12 @@ extension ViewController: CollpasedTableViewCellProtocol {
             tblView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .top)
             tblView.endUpdates()
         }
+        bottomCTAView.populateDynamicData(with: BottomCTAModel(ctaTitleString: viewModel.getPrimaryCTAStringBasedOnViewType()))
+    }
+}
+
+extension ViewController: EMISelectionRepaymentTableViewCellProtocol {
+    func viewSelected(at uid: UUID) {
+        viewModel.selectEMIPlan(for: uid)
     }
 }

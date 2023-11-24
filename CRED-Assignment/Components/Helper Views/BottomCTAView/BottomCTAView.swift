@@ -11,6 +11,8 @@ class BottomCTAView: UIView {
     
     // MARK: - Properties
     private var viewModel: BottomCTAViewModel
+    let ctaBackgroundView = UIView()
+    let ctaTextLabel = UILabel()
     
     // MARK: - Initializer
     init(viewModel: BottomCTAViewModel) {
@@ -25,7 +27,6 @@ class BottomCTAView: UIView {
     
     // MARK: - AutoLayoutSetup
     private func setupView() {
-        let ctaBackgroundView = UIView()
         /// Top Corners Rounded
         ctaBackgroundView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         ctaBackgroundView.layer.cornerRadius = 16.0
@@ -38,7 +39,6 @@ class BottomCTAView: UIView {
         ctaBackgroundView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         ctaBackgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        let ctaTextLabel = UILabel()
         ctaTextLabel.translatesAutoresizingMaskIntoConstraints = false
         ctaBackgroundView.addSubview(ctaTextLabel)
         
@@ -47,13 +47,16 @@ class BottomCTAView: UIView {
         ctaTextLabel.topAnchor.constraint(equalTo: ctaBackgroundView.topAnchor, constant: 16).isActive = true
         ctaTextLabel.bottomAnchor.constraint(equalTo: ctaBackgroundView.bottomAnchor, constant: -16).isActive = true
         
-        populateDynamicData()
-        
-        func populateDynamicData() {
-            let dataToPopulate = viewModel.getModelToPopulateUI()
-            ctaBackgroundView.backgroundColor = dataToPopulate.ctaBackgroundColor
-            ctaTextLabel.textColor = dataToPopulate.ctaTextColor
-            ctaTextLabel.text = dataToPopulate.ctaTitleString
+        populateDynamicData(with: nil)
+    }
+    
+    func populateDynamicData(with bottomCTAModel: BottomCTAModel?) {
+        if let bottomCTAModel {
+            viewModel = BottomCTAViewModel(model: bottomCTAModel)
         }
+        let dataToPopulate = viewModel.getModelToPopulateUI()
+        ctaBackgroundView.backgroundColor = dataToPopulate.ctaBackgroundColor
+        ctaTextLabel.textColor = dataToPopulate.ctaTextColor
+        ctaTextLabel.text = dataToPopulate.ctaTitleString
     }
 }

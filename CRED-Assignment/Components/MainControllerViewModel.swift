@@ -17,6 +17,7 @@ class MainControllerViewModel {
     // MARK: - Properties
     private var dataSource: [RowsType]
     private var currentSelectedRow: RowsType = .amountSelection
+    private var emiSelectedModel: EMISelectionRepaymentTableViewCell.Model?
     
     // MARK: - Initialiser
     init(dataSource: [RowsType]) {
@@ -30,7 +31,8 @@ class MainControllerViewModel {
         case .amountSelection:
             return getAmountSelectionModel()
         case .emiSelection:
-            return getEMISelectionModel()
+            let emiSelectedModel = getEMISelectionModel()
+            return emiSelectedModel
         case .bankSelection:
             return getBankSelectionModel()
         }
@@ -55,9 +57,9 @@ class MainControllerViewModel {
         }
         
         let subModelsArr: [EMISelectionCollectionViewCell.Model] = [
-            EMISelectionCollectionViewCell.Model(backgroundColor: UIColor(red: 71/255, green: 51/255, blue: 63/255, alpha: 1.0), isSelected: false, emiAmount: 10000, emiDuration: 4, isRecommended: false),
-            EMISelectionCollectionViewCell.Model(backgroundColor: UIColor(red: 126/255, green: 115/255, blue: 146/255, alpha: 1.0), isSelected: true, emiAmount: 25000, emiDuration: 6, isRecommended: false),
-            EMISelectionCollectionViewCell.Model(backgroundColor: UIColor(red: 85/255, green: 106/255, blue: 142/255, alpha: 1.0), isSelected: false, emiAmount: 50000, emiDuration: 8, isRecommended: true)
+            EMISelectionCollectionViewCell.Model(uid: UUID(), backgroundColor: UIColor(red: 71/255, green: 51/255, blue: 63/255, alpha: 1.0), isSelected: false, emiAmount: 10000, emiDuration: 4, isRecommended: false),
+            EMISelectionCollectionViewCell.Model(uid: UUID(), backgroundColor: UIColor(red: 126/255, green: 115/255, blue: 146/255, alpha: 1.0), isSelected: true, emiAmount: 25000, emiDuration: 6, isRecommended: false),
+            EMISelectionCollectionViewCell.Model(uid: UUID(), backgroundColor: UIColor(red: 85/255, green: 106/255, blue: 142/255, alpha: 1.0), isSelected: false, emiAmount: 50000, emiDuration: 8, isRecommended: true)
         ]
         
         return EMISelectionRepaymentTableViewCell.Model(emiSelectionCollectionViewCellsArr: subModelsArr, isCurrentlyActiveView: currentSelectedRow == .emiSelection)
@@ -102,5 +104,28 @@ class MainControllerViewModel {
     
     func expandView(at index: Int) {
         currentSelectedRow = dataSource[index]
+    }
+    
+    func selectEMIPlan(for selectedUID: UUID) {
+        var retEmiSelectionCollectionViewCellsArr = [EMISelectionCollectionViewCell.Model]()
+        if let emiSelectedModel {
+            for data in emiSelectedModel.emiSelectionCollectionViewCellsArr {
+                var newData = data
+                newData.isSelected = newData.uid == selectedUID
+                retEmiSelectionCollectionViewCellsArr.append(newData)
+            }
+            let retArr = EMISelectionRepaymentTableViewCell.Model(emiSelectionCollectionViewCellsArr: retEmiSelectionCollectionViewCellsArr, isCurrentlyActiveView: emiSelectedModel.isCurrentlyActiveView)
+            self.emiSelectedModel = retArr
+        }
+    }
+    
+    func getPrimaryCTAStringBasedOnViewType() -> String {
+        if currentSelectedRow == .amountSelection {
+            return "Proceed to EMI selection"
+        } else if currentSelectedRow == .emiSelection {
+            return "Select your bank account"
+        } else {
+            return "Tap for 1-click KYC"
+        }
     }
 }

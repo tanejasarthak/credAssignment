@@ -9,6 +9,10 @@ import UIKit
 
 protocol GeneralTableViewModelProtocol { }
 
+protocol EMISelectionRepaymentTableViewCellProtocol: AnyObject {
+    func viewSelected(at uid: UUID)
+}
+
 class EMISelectionRepaymentTableViewCell: UITableViewCell {
 
     // MARK: - Model
@@ -46,6 +50,7 @@ class EMISelectionRepaymentTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     private var collectionViewModels: EMISelectionRepaymentTableViewCell.Model?
+    weak var delegate: EMISelectionRepaymentTableViewCellProtocol?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -80,10 +85,27 @@ extension EMISelectionRepaymentTableViewCell: UICollectionViewDelegate, UICollec
         if let model = collectionViewModels?.emiSelectionCollectionViewCellsArr[indexPath.row] {
             cell.configureView(with: model)
         }
+        cell.delegate = self
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 200, height: collectionView.frame.height)
+    }
+}
+
+extension EMISelectionRepaymentTableViewCell: EMISelectionCollectionViewCellProtocol {
+    func tickMarkTapped(at uid: UUID) {
+        if let collectionViewModels = collectionViewModels {
+            var modifiedData = [EMISelectionCollectionViewCell.Model]()
+            for emiSelectionCollectionViewCellModel in collectionViewModels.emiSelectionCollectionViewCellsArr {
+                var newElement = emiSelectionCollectionViewCellModel
+                newElement.isSelected = newElement.uid == uid
+                modifiedData.append(newElement)
+            }
+            self.collectionViewModels = EMISelectionRepaymentTableViewCell.Model(emiSelectionCollectionViewCellsArr: modifiedData, isCurrentlyActiveView: collectionViewModels.isCurrentlyActiveView)
+        }
+        delegate?.viewSelected(at: uid)
+        collectionView.reloadData()
     }
 }

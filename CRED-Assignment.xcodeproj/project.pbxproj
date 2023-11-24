@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		600DDABC2B0FE65600D2C33E /* DottedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600DDABB2B0FE65600D2C33E /* DottedLine.swift */; };
 		6025F7C12B0D1372009A089C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025F7C02B0D1372009A089C /* AppDelegate.swift */; };
 		6025F7C32B0D1372009A089C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025F7C22B0D1372009A089C /* SceneDelegate.swift */; };
 		6025F7C52B0D1372009A089C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6025F7C42B0D1372009A089C /* ViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		600DDABB2B0FE65600D2C33E /* DottedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DottedLine.swift; sourceTree = "<group>"; };
 		6025F7BD2B0D1372009A089C /* CRED-Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CRED-Assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6025F7C02B0D1372009A089C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6025F7C22B0D1372009A089C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				6025F7F22B0E1E3A009A089C /* Extensions */,
 				6025F7DD2B0D1851009A089C /* Constants.swift */,
 				6025F7E62B0D3BF2009A089C /* UtilityFunctions.swift */,
+				600DDABB2B0FE65600D2C33E /* DottedLine.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				6025F7C32B0D1372009A089C /* SceneDelegate.swift in Sources */,
 				6025F7D92B0D1694009A089C /* BottomCTAViewModel.swift in Sources */,
 				6025F7E72B0D3BF2009A089C /* UtilityFunctions.swift in Sources */,
+				600DDABC2B0FE65600D2C33E /* DottedLine.swift in Sources */,
 				6025F7E12B0D36AB009A089C /* AmountSelectionCircularProgressBarView.swift in Sources */,
 				6025F8062B0E665D009A089C /* ContentSizedTableView.swift in Sources */,
 			);
