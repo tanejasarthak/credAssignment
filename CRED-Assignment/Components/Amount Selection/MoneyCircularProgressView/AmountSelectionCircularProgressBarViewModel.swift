@@ -26,12 +26,12 @@ class AmountSelectionCircularProgressBarViewModel {
         delegate?.updateLabelsForAmountSelected()
     }
     
-    func getSelectedAmountToPopulateUI() -> String {
-        UtilityFunctions.toCommaSeperatedAmount(value: dataModel.selectedAmount, addRupeeSymbol: true)
-    }
-    
     func getMinAndMaxPossibleAmountValue() -> (min: Int, max: Int) {
         (dataModel.minPossibleAmount, dataModel.maxPossibleAmount)
+    }
+    
+    func getSelectedAmount() -> Int {
+        dataModel.selectedAmount
     }
     
     func isViewCurrentlySelected() -> Bool {

@@ -8,6 +8,10 @@
 import UIKit
 import HGCircularSlider
 
+protocol AmountSelectionCircularProgressBarTableViewCellProtocol: AnyObject {
+    func updateAmountBasedOnSliderSelection(amount: Int)
+}
+
 class AmountSelectionCircularProgressBarTableViewCell: UITableViewCell, CollapsibleTableViewCellsProtocol {
 
     // MARK: - IBOutlets
@@ -23,6 +27,7 @@ class AmountSelectionCircularProgressBarTableViewCell: UITableViewCell, Collapsi
     
     // MARK: - Properties
    private var viewModel: AmountSelectionCircularProgressBarViewModel?
+    weak var delegate: AmountSelectionCircularProgressBarTableViewCellProtocol?
     
     // MARK: - Initialiser
     
@@ -38,19 +43,22 @@ class AmountSelectionCircularProgressBarTableViewCell: UITableViewCell, Collapsi
         if let minMaxAmountValues = viewModel?.getMinAndMaxPossibleAmountValue() {
             circularSlider.minimumValue = CGFloat(minMaxAmountValues.min)
             circularSlider.maximumValue = CGFloat(minMaxAmountValues.max)
-            circularSlider.endPointValue = CGFloat(minMaxAmountValues.min)
+        }
+        if let selectedAmount = viewModel?.getSelectedAmount() {
+            circularSlider.endPointValue = CGFloat(selectedAmount)
         }
         circularSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
     }
     
     @objc func sliderValueChanged() {
         viewModel?.updateAmountBasedOnSliderSelection(amount: Int(circularSlider.endPointValue))
+        delegate?.updateAmountBasedOnSliderSelection(amount: Int(circularSlider.endPointValue))
     }
 }
 
 // MARK: - ViewModel Delegate
 extension AmountSelectionCircularProgressBarTableViewCell: AmountSelectionCircularProgressBarViewModelProtocol {
     func updateLabelsForAmountSelected() {
-        lblAmountSelected.text = viewModel?.getSelectedAmountToPopulateUI()
+        lblAmountSelected.text = UtilityFunctions.toCommaSeperatedAmount(value: (viewModel?.getSelectedAmount()).unwrappedValue(or: 0), addRupeeSymbol: true)
     }
 }

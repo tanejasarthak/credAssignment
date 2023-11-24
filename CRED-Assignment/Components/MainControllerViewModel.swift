@@ -18,14 +18,23 @@ class MainControllerViewModel {
         case amountSelection, emiSelection, bankSelection
     }
     
+    // MARK: - AllTableViewModels
+    struct AllTableViewCellModels {
+        var amountSelectedModel: GeneralTableViewModelProtocol?
+        var emiSelectedModel: GeneralTableViewModelProtocol?
+        var bankSelectionModel: GeneralTableViewModelProtocol?
+    }
+    
     // MARK: - Properties
     private var dataSource: [RowsType]
+    private var allTableViewCellModels: AllTableViewCellModels?
     private var currentSelectedRow: RowsType = .amountSelection
-    private var emiSelectedModel: EMISelectionRepaymentTableViewCell.Model?
     
     // MARK: - Initialiser
     init(dataSource: [RowsType]) {
         self.dataSource = dataSource
+        
+        allTableViewCellModels = AllTableViewCellModels(amountSelectedModel: getAmountSelectionModel(), emiSelectedModel: getEMISelectionModel(), bankSelectionModel: getBankSelectionModel())
     }
     
     // MARK: - TableViewHelper
@@ -35,8 +44,7 @@ class MainControllerViewModel {
         case .amountSelection:
             return getAmountSelectionModel()
         case .emiSelection:
-            let emiSelectedModel = getEMISelectionModel()
-            return emiSelectedModel
+            return getEMISelectionModel()
         case .bankSelection:
             return getBankSelectionModel()
         }
@@ -48,16 +56,30 @@ class MainControllerViewModel {
     
     private func getAmountSelectionModel() -> GeneralTableViewModelProtocol {
         if currentSelectedRow != .amountSelection {
-            let collapsedTableViewCellModel = CollpasedTableViewCell.Model(firstHeading: "first", firstSubHeading: "seonc", secondHeading: "second", secondSubHeading: "third", viewTag: 1)
-            return collapsedTableViewCellModel
+            if let amountSelectedModel = allTableViewCellModels?.amountSelectedModel as? AmountSelectionCircularProgressBarModel {
+                let collapsedTableViewCellModel = CollpasedTableViewCell.Model(firstHeading: "credit amount", firstSubHeading: UtilityFunctions.toCommaSeperatedAmount(value: (amountSelectedModel.selectedAmount), addRupeeSymbol: true) + " . mo", secondHeading: nil, secondSubHeading: nil, viewTag: 1)
+                return collapsedTableViewCellModel
+            }
+        }
+        
+        if let amountAlreadySelectedModel = allTableViewCellModels?.amountSelectedModel as? AmountSelectionCircularProgressBarModel {
+            return AmountSelectionCircularProgressBarModel(selectedAmount: amountAlreadySelectedModel.selectedAmount, interestRate: 10, minPossibleAmount: 500, maxPossibleAmount: 100000, isCurrentlyActiveView: currentSelectedRow == .amountSelection)
         }
         return AmountSelectionCircularProgressBarModel(selectedAmount: 1000, interestRate: 10, minPossibleAmount: 500, maxPossibleAmount: 100000, isCurrentlyActiveView: currentSelectedRow == .amountSelection)
     }
     
     private func getEMISelectionModel() -> GeneralTableViewModelProtocol {
         if currentSelectedRow == .bankSelection {
-            let collapsedTableViewCellModel = CollpasedTableViewCell.Model(firstHeading: "first", firstSubHeading: "seonc", secondHeading: nil, secondSubHeading: nil, viewTag: 1)
-            return collapsedTableViewCellModel
+            if let emiSelectedModel = allTableViewCellModels?.emiSelectedModel as? EMISelectionRepaymentTableViewCell.Model {
+                if let selectedEMIData = emiSelectedModel.emiSelectionCollectionViewCellsArr.filter({ $0.isSelected }).first {
+                    let collapsedTableViewCellModel = CollpasedTableViewCell.Model(firstHeading: "EMI", firstSubHeading: String(selectedEMIData.emiAmount), secondHeading: "Duration", secondSubHeading: String(selectedEMIData.emiDuration), viewTag: 1)
+                    return collapsedTableViewCellModel
+                }
+            }
+        }
+        
+        if let subModelsArr = allTableViewCellModels?.emiSelectedModel as? EMISelectionRepaymentTableViewCell.Model {
+            return EMISelectionRepaymentTableViewCell.Model(emiSelectionCollectionViewCellsArr: subModelsArr.emiSelectionCollectionViewCellsArr, isCurrentlyActiveView: currentSelectedRow == .emiSelection)
         }
         
         let subModelsArr: [EMISelectionCollectionViewCell.Model] = [
@@ -112,14 +134,14 @@ class MainControllerViewModel {
     
     func selectEMIPlan(for selectedUID: UUID) {
         var retEmiSelectionCollectionViewCellsArr = [EMISelectionCollectionViewCell.Model]()
-        if let emiSelectedModel {
+        if let emiSelectedModel = allTableViewCellModels?.emiSelectedModel as? EMISelectionRepaymentTableViewCell.Model {
             for data in emiSelectedModel.emiSelectionCollectionViewCellsArr {
                 var newData = data
                 newData.isSelected = newData.uid == selectedUID
                 retEmiSelectionCollectionViewCellsArr.append(newData)
             }
             let retArr = EMISelectionRepaymentTableViewCell.Model(emiSelectionCollectionViewCellsArr: retEmiSelectionCollectionViewCellsArr, isCurrentlyActiveView: emiSelectedModel.isCurrentlyActiveView)
-            self.emiSelectedModel = retArr
+            self.allTableViewCellModels?.emiSelectedModel = retArr
         }
     }
     
@@ -139,6 +161,7 @@ class MainControllerViewModel {
         if let tableViewRowData = getDataForRow(at: indexPath.row) {
             if let amountSelectionData = tableViewRowData as? AmountSelectionCircularProgressBarModel {
                 let amountSelectionTblViewCell: AmountSelectionCircularProgressBarTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AmountSelectionCircularProgressBarTableViewCell") as! AmountSelectionCircularProgressBarTableViewCell
+                amountSelectionTblViewCell.delegate = self
                 amountSelectionTblViewCell.configureView(vm: AmountSelectionCircularProgressBarViewModel(dataModel: amountSelectionData))
                 return amountSelectionTblViewCell
             } else if let emiSelectionData = tableViewRowData as? EMISelectionRepaymentTableViewCell.Model {
@@ -165,5 +188,14 @@ class MainControllerViewModel {
 extension MainControllerViewModel: EMISelectionRepaymentTableViewCellProtocol {
     func viewSelected(at uid: UUID) {
         selectEMIPlan(for: uid)
+    }
+}
+
+extension MainControllerViewModel: AmountSelectionCircularProgressBarTableViewCellProtocol {
+    func updateAmountBasedOnSliderSelection(amount: Int) {
+        if var amountSelectedModel = allTableViewCellModels?.amountSelectedModel as? AmountSelectionCircularProgressBarModel {
+            amountSelectedModel.selectedAmount = amount
+            allTableViewCellModels?.amountSelectedModel = amountSelectedModel
+        }
     }
 }

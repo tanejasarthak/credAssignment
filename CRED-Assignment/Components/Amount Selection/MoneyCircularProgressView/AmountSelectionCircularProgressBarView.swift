@@ -42,6 +42,6 @@ class AmountSelectionCircularProgressBarView: UIView {
 // MARK: - ViewModel Delegate
 extension AmountSelectionCircularProgressBarView: AmountSelectionCircularProgressBarViewModelProtocol {
     func updateLabelsForAmountSelected() {
-        lblAmountSelected.text = viewModel?.getSelectedAmountToPopulateUI()
+        lblAmountSelected.text = UtilityFunctions.toCommaSeperatedAmount(value: (viewModel?.getSelectedAmount()).unwrappedValue(or: 0), addRupeeSymbol: true)
     }
 }
