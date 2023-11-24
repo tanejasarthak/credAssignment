@@ -13,7 +13,7 @@ protocol EMISelectionRepaymentTableViewCellProtocol: AnyObject {
     func viewSelected(at uid: UUID)
 }
 
-class EMISelectionRepaymentTableViewCell: UITableViewCell {
+class EMISelectionRepaymentTableViewCell: UITableViewCell, CollapsibleTableViewCellsProtocol {
 
     // MARK: - Model
     struct Model: GeneralTableViewModelProtocol {

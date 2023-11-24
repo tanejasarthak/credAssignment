@@ -11,7 +11,7 @@ protocol CollpasedTableViewCellProtocol: AnyObject {
     func collapsedTableViewCellTapped(at tag: Int)
 }
 
-class CollpasedTableViewCell: UITableViewCell {
+class CollpasedTableViewCell: UITableViewCell, CollapsibleTableViewCellsProtocol {
     // MARK: - Model
     struct Model: GeneralTableViewModelProtocol {
         var firstHeading: String?

@@ -96,30 +96,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let tableViewRowData = viewModel.getDataForRow(at: indexPath.row) {
-            if let amountSelectionData = tableViewRowData as? AmountSelectionCircularProgressBarModel {
-                let amountSelectionTblViewCell: AmountSelectionCircularProgressBarTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AmountSelectionCircularProgressBarTableViewCell") as! AmountSelectionCircularProgressBarTableViewCell
-                amountSelectionTblViewCell.configureView(vm: AmountSelectionCircularProgressBarViewModel(dataModel: amountSelectionData))
-                return amountSelectionTblViewCell
-            } else if let emiSelectionData = tableViewRowData as? EMISelectionRepaymentTableViewCell.Model {
-                let emiSelectionTblViewCell: EMISelectionRepaymentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "EMISelectionRepaymentTableViewCell") as! EMISelectionRepaymentTableViewCell
-                emiSelectionTblViewCell.configureView(with: emiSelectionData)
-                emiSelectionTblViewCell.delegate = self
-                return emiSelectionTblViewCell
-            } else if let bankSelectionData = tableViewRowData as? SendMoneyToBankTableViewCellTableViewCell.Model {
-                let bankSelectionTblViewCell: SendMoneyToBankTableViewCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SendMoneyToBankTableViewCellTableViewCell") as! SendMoneyToBankTableViewCellTableViewCell
-                bankSelectionTblViewCell.configureView(with: bankSelectionData)
-                return bankSelectionTblViewCell
-            } else if let collapsedTableViewCellData = tableViewRowData as? CollpasedTableViewCell.Model {
-                let collapsedTableViewCell: CollpasedTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CollpasedTableViewCell") as! CollpasedTableViewCell
-                collapsedTableViewCell.tag = indexPath.row
-                collapsedTableViewCell.delegate = self
-                collapsedTableViewCell.configureView(with: collapsedTableViewCellData)
-                return collapsedTableViewCell
-            }
-        }
-        
-        return UITableViewCell()
+        return viewModel.getTableViewCell(tableView, indexPath: indexPath, vc: self) ?? UITableViewCell()
     }
 }
 

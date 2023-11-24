@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol CollapsibleTableViewCellsProtocol where Self: UITableViewCell {
+    
+}
+
 class MainControllerViewModel {
     // MARK: - Enums
     enum RowsType {
@@ -127,5 +131,39 @@ class MainControllerViewModel {
         } else {
             return "Tap for 1-click KYC"
         }
+    }
+    
+    
+    // MARK: - Get TableViewCells
+    func getTableViewCell(_ tableView: UITableView, indexPath: IndexPath, vc: ViewController) -> CollapsibleTableViewCellsProtocol? {
+        if let tableViewRowData = getDataForRow(at: indexPath.row) {
+            if let amountSelectionData = tableViewRowData as? AmountSelectionCircularProgressBarModel {
+                let amountSelectionTblViewCell: AmountSelectionCircularProgressBarTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AmountSelectionCircularProgressBarTableViewCell") as! AmountSelectionCircularProgressBarTableViewCell
+                amountSelectionTblViewCell.configureView(vm: AmountSelectionCircularProgressBarViewModel(dataModel: amountSelectionData))
+                return amountSelectionTblViewCell
+            } else if let emiSelectionData = tableViewRowData as? EMISelectionRepaymentTableViewCell.Model {
+                let emiSelectionTblViewCell: EMISelectionRepaymentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "EMISelectionRepaymentTableViewCell") as! EMISelectionRepaymentTableViewCell
+                emiSelectionTblViewCell.configureView(with: emiSelectionData)
+                emiSelectionTblViewCell.delegate = self
+                return emiSelectionTblViewCell
+            } else if let bankSelectionData = tableViewRowData as? SendMoneyToBankTableViewCellTableViewCell.Model {
+                let bankSelectionTblViewCell: SendMoneyToBankTableViewCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SendMoneyToBankTableViewCellTableViewCell") as! SendMoneyToBankTableViewCellTableViewCell
+                bankSelectionTblViewCell.configureView(with: bankSelectionData)
+                return bankSelectionTblViewCell
+            } else if let collapsedTableViewCellData = tableViewRowData as? CollpasedTableViewCell.Model {
+                let collapsedTableViewCell: CollpasedTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CollpasedTableViewCell") as! CollpasedTableViewCell
+                collapsedTableViewCell.tag = indexPath.row
+                collapsedTableViewCell.delegate = vc
+                collapsedTableViewCell.configureView(with: collapsedTableViewCellData)
+                return collapsedTableViewCell
+            }
+        }
+        return nil
+    }
+}
+
+extension MainControllerViewModel: EMISelectionRepaymentTableViewCellProtocol {
+    func viewSelected(at uid: UUID) {
+        selectEMIPlan(for: uid)
     }
 }

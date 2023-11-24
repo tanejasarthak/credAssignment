@@ -8,7 +8,7 @@
 import UIKit
 import HGCircularSlider
 
-class AmountSelectionCircularProgressBarTableViewCell: UITableViewCell {
+class AmountSelectionCircularProgressBarTableViewCell: UITableViewCell, CollapsibleTableViewCellsProtocol {
 
     // MARK: - IBOutlets
     @IBOutlet weak var circularSlider: CircularSlider!
@@ -38,6 +38,7 @@ class AmountSelectionCircularProgressBarTableViewCell: UITableViewCell {
         if let minMaxAmountValues = viewModel?.getMinAndMaxPossibleAmountValue() {
             circularSlider.minimumValue = CGFloat(minMaxAmountValues.min)
             circularSlider.maximumValue = CGFloat(minMaxAmountValues.max)
+            circularSlider.endPointValue = CGFloat(minMaxAmountValues.min)
         }
         circularSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SendMoneyToBankTableViewCellTableViewCell: UITableViewCell {
+class SendMoneyToBankTableViewCellTableViewCell: UITableViewCell, CollapsibleTableViewCellsProtocol {
 
     // MARK: - Model
     struct Model: GeneralTableViewModelProtocol {
