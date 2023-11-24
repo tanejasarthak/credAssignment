@@ -84,8 +84,8 @@ class MainControllerViewModel {
         
         let subModelsArr: [EMISelectionCollectionViewCell.Model] = [
             EMISelectionCollectionViewCell.Model(uid: UUID(), backgroundColor: UIColor(red: 71/255, green: 51/255, blue: 63/255, alpha: 1.0), isSelected: false, emiAmount: 10000, emiDuration: 4, isRecommended: false),
-            EMISelectionCollectionViewCell.Model(uid: UUID(), backgroundColor: UIColor(red: 126/255, green: 115/255, blue: 146/255, alpha: 1.0), isSelected: true, emiAmount: 25000, emiDuration: 6, isRecommended: false),
-            EMISelectionCollectionViewCell.Model(uid: UUID(), backgroundColor: UIColor(red: 85/255, green: 106/255, blue: 142/255, alpha: 1.0), isSelected: false, emiAmount: 50000, emiDuration: 8, isRecommended: true)
+            EMISelectionCollectionViewCell.Model(uid: UUID(), backgroundColor: UIColor(red: 126/255, green: 115/255, blue: 146/255, alpha: 1.0), isSelected: true, emiAmount: 25000, emiDuration: 6, isRecommended: true),
+            EMISelectionCollectionViewCell.Model(uid: UUID(), backgroundColor: UIColor(red: 85/255, green: 106/255, blue: 142/255, alpha: 1.0), isSelected: false, emiAmount: 50000, emiDuration: 8, isRecommended: false)
         ]
         
         return EMISelectionRepaymentTableViewCell.Model(emiSelectionCollectionViewCellsArr: subModelsArr, isCurrentlyActiveView: currentSelectedRow == .emiSelection)

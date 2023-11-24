@@ -65,7 +65,7 @@ class EMISelectionCollectionViewCell: UICollectionViewCell {
         parentView.backgroundColor = model.backgroundColor
         lblEMIAmount.text = UtilityFunctions.toCommaSeperatedAmount(value: Int(model.emiAmount), addRupeeSymbol: true) + " / mo"
         lblEMIDuration.text = "for " + String(model.emiDuration) + " months"
-        recommendedView.isHidden = model.isRecommended
+        recommendedView.isHidden = !model.isRecommended
         
         if model.isSelected {
             tickImageView.image = UIImage(systemName: "checkmark")
